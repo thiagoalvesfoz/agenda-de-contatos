@@ -4,13 +4,14 @@ import { isAuthenticated } from "./services/auth";
 
 import Register from "./pages/register";
 import Login from './pages/login'
+import Schedule from './pages/schedule'
 
 
 const PrivateRoute = ({ component: Component, ...rest }) => (
   <Route
     {...rest}
     render={props =>
-      isAuthenticated() ? (
+      true ? (
         <Component {...props} />
       ) : (
         <Redirect to="/login" />
@@ -24,7 +25,7 @@ const Routes = () => (
     <Switch>
       <Route path="/login" component={Login} />
       <Route path="/register" component={Register} />
-      <PrivateRoute path="/" component={() => <h1>Agenda</h1>} />
+      <PrivateRoute path="/" component={Schedule} />
       <Route path="*" component={() => <h1>Page not found</h1>} />
     </Switch>
   </BrowserRouter>
